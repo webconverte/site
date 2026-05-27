@@ -187,11 +187,11 @@ export default function Page() {
         </section>
 
         {/* SELETOR DE PROFISSÃO */}
-        <section className="py-16 md:py-24 bg-[#041847] relative" id="solucoes">
+        <section className="py-16 md:py-24 bg-white relative" id="solucoes">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <FadeIn className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6 md:gap-8">
               <div className="max-w-2xl">
-                <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6">Escolha sua profissão e veja como podemos ajudar você a crescer.</h2>
+                <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-black mb-4 md:mb-6">Escolha sua profissão e veja como podemos ajudar você a crescer.</h2>
                 <div className="h-1.5 w-16 md:w-24 bg-secondary-fixed"></div>
               </div>
               <p className="text-outline text-base md:text-lg max-w-sm">Soluções personalizadas para cada nicho, respeitando a ética e as particularidades do seu conselho.</p>
@@ -259,12 +259,12 @@ export default function Page() {
         </section>
 
         {/* SOLUÇÃO (MÁQUINA DE CAPTAÇÃO) */}
-        <section className="py-16 md:py-24 bg-[#041847] relative" id="solucao">
+        <section className="py-16 md:py-24 bg-surface-container-low relative" id="solucao">
         {/* Removed original section tag, replaced with one including id */}
           <div className="absolute inset-0 opacity-5 pointer-events-none conversion-line"></div>
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center relative z-10">
             <FadeIn>
-              <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-10 md:mb-16 text-balance">Construímos a sua Máquina de Captação Digital.</h2>
+              <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-extrabold text-black mb-10 md:mb-16 text-balance">Construímos a sua Máquina de Captação Digital.</h2>
             </FadeIn>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {[
