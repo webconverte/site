@@ -63,7 +63,7 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
   </motion.div>
 );
 
-export default function Page() {
+function Header() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   return (
     <>
@@ -85,26 +85,34 @@ export default function Page() {
           </button>
         </div>
       </header>
-{menuOpen && (
-          <nav className="fixed inset-0 md:hidden z-40" onClick={() => setMenuOpen(false)}>
-            <div className="bg-[#041847] px-8 pt-5 pb-10 flex flex-col space-y-5" onClick={(e) => e.stopPropagation()}>
-              <div className="flex justify-between items-center mb-4">
-                <div className="font-headline text-2xl font-light">
-                  <span className="text-secondary-fixed">WEB</span><span className="text-white">CONVERTE</span>
-                </div>
-                <button className="text-white" onClick={() => setMenuOpen(false)}>
-                  <X className="w-6 h-6" />
-                </button>
+      {menuOpen && (
+        <nav className="fixed inset-0 md:hidden z-40" onClick={() => setMenuOpen(false)}>
+          <div className="bg-[#041847] px-8 pt-5 pb-10 flex flex-col space-y-5" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-4">
+              <div className="font-headline text-2xl font-light">
+                <span className="text-secondary-fixed">WEB</span><span className="text-white">CONVERTE</span>
               </div>
-              <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#solucoes" onClick={() => setMenuOpen(false)}>Soluções</a>
-              <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
-              <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
-              <button className="mt-2 bg-secondary-fixed text-azul-noite px-8 py-3 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all" onClick={() => setMenuOpen(false)}>
-                Falar com Especialista
+              <button className="text-white" onClick={() => setMenuOpen(false)}>
+                <X className="w-6 h-6" />
               </button>
             </div>
-          </nav>
-        )}
+            <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#solucoes" onClick={() => setMenuOpen(false)}>Soluções</a>
+            <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
+            <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+            <button className="mt-2 bg-secondary-fixed text-azul-noite px-8 py-3 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all" onClick={() => setMenuOpen(false)}>
+              Falar com Especialista
+            </button>
+          </div>
+        </nav>
+      )}
+    </>
+  );
+}
+
+export default function Page() {
+  return (
+    <>
+      <Header />
 
       <main>
         {/* HERO SECTION */}
