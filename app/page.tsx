@@ -481,8 +481,36 @@ export default function Page() {
           </div>
         </section>
 
+        {/* FAQ (Modern Accordion) */}
+        <section className="py-16 md:py-24 bg-surface-container" id="faq">
+          <div className="max-w-3xl mx-auto px-4 md:px-8">
+            <FadeIn>
+              <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-extrabold text-azul-noite text-center mb-10 md:mb-16">Dúvidas Frequentes</h2>
+            </FadeIn>
+            <div className="space-y-3 md:space-y-4">
+              {[
+                { q: 'Quanto tempo leva para ver os primeiros resultados?', a: 'Depende da maturidade da sua estrutura atual, mas geralmente as primeiras conversões acontecem entre a segunda e quarta semana após o início das campanhas oficiais.' },
+                { q: 'Preciso gravar vídeos para ter resultado?', a: 'Vídeos geram muito mais autoridade e conversão imediata. Nós fornecemos todos os scripts validados e orientações técnicas para que você se sinta confortável e transmita máxima autoridade.' },
+                { q: 'A WebConverte respeita a ética do meu conselho?', a: 'Sim, seguimos rigorosamente os códigos de ética (CRP, CRM, etc). Fazemos um marketing informativo, elegante e baseado em evidências, sem ferir as normas vigentes.' },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 0.1}>
+                  <details className="group bg-surface-container-lowest border border-outline-variant/30 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary className="flex justify-between items-center p-5 md:p-8 cursor-pointer list-none font-bold text-base md:text-lg text-azul-noite hover:bg-azul-noite/5 transition-colors">
+                      {item.q}
+                      <ChevronDown className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-secondary transition-transform duration-300 group-open:rotate-180" />
+                    </summary>
+                    <div className="px-5 md:px-8 pb-5 md:pb-8 pt-0 text-outline text-sm md:text-base leading-relaxed border-t border-transparent group-open:border-outline-variant/20 group-open:pt-4 md:group-open:pt-6 mt-[-10px] md:mt-[-15px] transition-all">
+                      {item.a}
+                    </div>
+                  </details>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* GANHOS (Split Layout) */}
-        <section className="py-xl bg-surface-container relative overflow-hidden">
+        <section className="py-xl bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
             <FadeIn>
               <div className="flex flex-col lg:flex-row gap-0 rounded-[2.5rem] overflow-hidden shadow-2xl">
@@ -536,34 +564,6 @@ export default function Page() {
                 </div>
               </div>
             </FadeIn>
-          </div>
-        </section>
-
-        {/* FAQ (Modern Accordion) */}
-        <section className="py-16 md:py-24 bg-white" id="faq">
-          <div className="max-w-3xl mx-auto px-4 md:px-8">
-            <FadeIn>
-              <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-extrabold text-azul-noite text-center mb-10 md:mb-16">Dúvidas Frequentes</h2>
-            </FadeIn>
-            <div className="space-y-3 md:space-y-4">
-              {[
-                { q: 'Quanto tempo leva para ver os primeiros resultados?', a: 'Depende da maturidade da sua estrutura atual, mas geralmente as primeiras conversões acontecem entre a segunda e quarta semana após o início das campanhas oficiais.' },
-                { q: 'Preciso gravar vídeos para ter resultado?', a: 'Vídeos geram muito mais autoridade e conversão imediata. Nós fornecemos todos os scripts validados e orientações técnicas para que você se sinta confortável e transmita máxima autoridade.' },
-                { q: 'A WebConverte respeita a ética do meu conselho?', a: 'Sim, seguimos rigorosamente os códigos de ética (CRP, CRM, etc). Fazemos um marketing informativo, elegante e baseado em evidências, sem ferir as normas vigentes.' },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 0.1}>
-                  <details className="group bg-surface-container-lowest border border-outline-variant/30 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex justify-between items-center p-5 md:p-8 cursor-pointer list-none font-bold text-base md:text-lg text-azul-noite hover:bg-azul-noite/5 transition-colors">
-                      {item.q}
-                      <ChevronDown className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-secondary transition-transform duration-300 group-open:rotate-180" />
-                    </summary>
-                    <div className="px-5 md:px-8 pb-5 md:pb-8 pt-0 text-outline text-sm md:text-base leading-relaxed border-t border-transparent group-open:border-outline-variant/20 group-open:pt-4 md:group-open:pt-6 mt-[-10px] md:mt-[-15px] transition-all">
-                      {item.a}
-                    </div>
-                  </details>
-                </FadeIn>
-              ))}
-            </div>
           </div>
         </section>
 
