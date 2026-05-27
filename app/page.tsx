@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import heroImage from '@/src/assets/images/female_professional_lab_coat_1779763514973.png';
 import {
   Menu,
+  X,
   Stethoscope,
   Sparkles,
   Star,
@@ -46,7 +47,8 @@ import {
   ArrowRight,
   ChevronDown,
   Share2,
-  Check
+  Check,
+
 } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
@@ -78,23 +80,31 @@ export default function Page() {
               Falar com Especialista
             </button>
           </nav>
-            <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
-            <Menu className="w-6 h-6" />
+          <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-        </header>
+      </header>
 {menuOpen && (
-  <nav className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm md:hidden z-40">
-    <div className="bg-[#041847] w-full p-4 flex flex-col space-y-4">
-      <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#solucoes" onClick={() => setMenuOpen(false)}>Soluções</a>
-      <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
-      <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
-      <button className="bg-secondary-fixed text-azul-noite px-8 py-2.5 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all" onClick={() => setMenuOpen(false)}>
-        Falar com Especialista
-      </button>
-    </div>
-  </nav>
-)}
+          <nav className="fixed inset-0 md:hidden z-40" onClick={() => setMenuOpen(false)}>
+            <div className="bg-[#041847] px-8 pt-5 pb-10 flex flex-col space-y-5" onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-4">
+                <div className="font-headline text-2xl font-light">
+                  <span className="text-secondary-fixed">WEB</span><span className="text-white">CONVERTE</span>
+                </div>
+                <button className="text-white" onClick={() => setMenuOpen(false)}>
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#solucoes" onClick={() => setMenuOpen(false)}>Soluções</a>
+              <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
+              <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+              <button className="mt-2 bg-secondary-fixed text-azul-noite px-8 py-3 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all" onClick={() => setMenuOpen(false)}>
+                Falar com Especialista
+              </button>
+            </div>
+          </nav>
+        )}
 
       <main>
         {/* HERO SECTION */}
@@ -169,11 +179,11 @@ export default function Page() {
         </section>
 
         {/* SELETOR DE PROFISSÃO */}
-        <section className="py-16 md:py-24 bg-white relative" id="solucoes">
+        <section className="py-16 md:py-24 bg-[#041847] relative" id="solucoes">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <FadeIn className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6 md:gap-8">
               <div className="max-w-2xl">
-                <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-azul-noite mb-4 md:mb-6">Escolha sua profissão e veja como podemos ajudar você a crescer.</h2>
+                <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 md:mb-6">Escolha sua profissão e veja como podemos ajudar você a crescer.</h2>
                 <div className="h-1.5 w-16 md:w-24 bg-secondary-fixed"></div>
               </div>
               <p className="text-outline text-base md:text-lg max-w-sm">Soluções personalizadas para cada nicho, respeitando a ética e as particularidades do seu conselho.</p>
@@ -241,7 +251,8 @@ export default function Page() {
         </section>
 
         {/* SOLUÇÃO (MÁQUINA DE CAPTAÇÃO) */}
-        <section className="py-16 md:py-24 bg-surface relative">
+        <section className="py-16 md:py-24 bg-[#041847] relative" id="solucao">
+        {/* Removed original section tag, replaced with one including id */}
           <div className="absolute inset-0 opacity-5 pointer-events-none conversion-line"></div>
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center relative z-10">
             <FadeIn>
