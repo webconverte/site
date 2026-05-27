@@ -62,6 +62,7 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
 );
 
 export default function Page() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   return (
     <>
       <header className="bg-[#041847] w-full top-0 sticky z-50">
@@ -77,11 +78,23 @@ export default function Page() {
               Falar com Especialista
             </button>
           </nav>
-          <button className="md:hidden text-white">
+            <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
             <Menu className="w-6 h-6" />
           </button>
         </div>
-      </header>
+        </header>
+{menuOpen && (
+  <nav className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm md:hidden z-40">
+    <div className="bg-[#041847] w-full p-4 flex flex-col space-y-4">
+      <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#solucoes" onClick={() => setMenuOpen(false)}>Soluções</a>
+      <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
+      <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+      <button className="bg-secondary-fixed text-azul-noite px-8 py-2.5 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all" onClick={() => setMenuOpen(false)}>
+        Falar com Especialista
+      </button>
+    </div>
+  </nav>
+)}
 
       <main>
         {/* HERO SECTION */}
