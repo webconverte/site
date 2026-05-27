@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-azul-noite: #111A33;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3f7;
+  --color-surface-container: #efedf2;
+  --color-surface-container-high: #e9e7ec;
+  --color-secondary-fixed: #c0f366;
+  --color-primary: #102251;
+  --color-secondary: #486800;
+  --color-background: #fbf8fd;
+  --color-surface: #fbf8fd;
+  --color-outline: #757680;
+  --color-outline-variant: #c5c6d0;
+  
+  --color-on-surface: #1b1b1f;
+
+  --font-headline: 'Futura', var(--font-montserrat), sans-serif;
+  --font-body: var(--font-inter);
+
+  --radius-card: 32px;
+  --radius-input: 12px;
+
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 80px;
+  --spacing-xl: 100px;
+}
+
+@utility hero-gradient {
+  background: radial-gradient(circle at 70% 30%, #1a2a52 0%, #111A33 100%);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility conversion-line {
+  background-image: radial-gradient(circle, #c0f366 2px, transparent 2px);
+  background-size: 24px 24px;
+}
+
+@utility dot-guide {
+  width: 8px;
+  height: 8px;
+  background: #c0f366;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #c0f366;
+}
+
+@utility timeline-line {
+  background: linear-gradient(to bottom, transparent, #c0f366, transparent);
+}
+
+@utility hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+

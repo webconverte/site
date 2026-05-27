@@ -1,0 +1,6 @@
+{
+  "name": "Web Converte",
+  "description": "Agência de Performance B2B para Área da Saúde e Beleza",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

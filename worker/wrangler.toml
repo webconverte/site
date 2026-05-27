@@ -1,0 +1,7 @@
+name = "webconverte-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-30"
+
+[vars]
+# Add global environment variables for the Worker here
+# API_VERSION = "v1"
