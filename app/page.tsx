@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'motion/react';
+import { FadeIn } from '@/src/components/FadeIn';
+import { Header } from '@/src/components/Header';
 import heroImage from '@/src/assets/images/female_professional_lab_coat_1779763514973.png';
 import {
   Menu,
@@ -51,63 +54,7 @@ import {
 
 } from 'lucide-react';
 
-const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
 
-function Header() {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  return (
-    <>
-      <header className="bg-[#041847] w-full top-0 sticky z-50">
-        <div className="flex justify-between items-center w-full px-4 md:px-8 py-4 max-w-7xl mx-auto">
-          <div className="font-headline text-2xl font-light">
-            <span className="text-secondary-fixed">WEB</span><span className="text-white">CONVERTE</span>
-          </div>
-          <nav className="hidden md:flex gap-10 items-center">
-            <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#solucoes">Soluções</a>
-            <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#metodo">Método</a>
-            <a className="text-white/70 font-medium hover:text-secondary-fixed transition-colors" href="#faq">FAQ</a>
-            <button className="bg-secondary-fixed text-azul-noite px-8 py-2.5 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
-              Falar com Especialista
-            </button>
-          </nav>
-          <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </header>
-      {menuOpen && (
-        <nav className="fixed inset-0 md:hidden z-40" onClick={() => setMenuOpen(false)}>
-          <div className="bg-[#041847] px-8 pt-5 pb-10 flex flex-col space-y-5" onClick={(e) => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-4">
-              <div className="font-headline text-2xl font-light">
-                <span className="text-secondary-fixed">WEB</span><span className="text-white">CONVERTE</span>
-              </div>
-              <button className="text-white" onClick={() => setMenuOpen(false)}>
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#solucoes" onClick={() => setMenuOpen(false)}>Soluções</a>
-            <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
-            <a className="text-white/70 font-medium text-lg hover:text-secondary-fixed transition-colors" href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
-            <button className="mt-2 bg-secondary-fixed text-azul-noite px-8 py-3 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all" onClick={() => setMenuOpen(false)}>
-              Falar com Especialista
-            </button>
-          </div>
-        </nav>
-      )}
-    </>
-  );
-}
 
 export default function Page() {
   return (
@@ -133,14 +80,14 @@ export default function Page() {
                 Criamos sua presença digital para que sua especialidade seja vista, valorizada e escolhida todos os dias. Uma estrutura de alto padrão para quem é referência no que faz.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-10 md:mb-12">
-                <button className="bg-white text-azul-noite px-8 py-4 sm:px-10 sm:py-5 rounded-input font-bold text-base hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2">
+                <Link href="/saude" className="bg-white text-azul-noite px-8 py-4 sm:px-10 sm:py-5 rounded-input font-bold text-base hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2">
                   Sou da área da Saúde
                   <Stethoscope className="w-5 h-5" />
-                </button>
-                <button className="bg-secondary-fixed text-azul-noite px-8 py-4 sm:px-10 sm:py-5 rounded-input font-bold text-base hover:shadow-[0_0_30px_rgba(192,243,102,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2">
+                </Link>
+                <Link href="/beleza" className="bg-secondary-fixed text-azul-noite px-8 py-4 sm:px-10 sm:py-5 rounded-input font-bold text-base hover:shadow-[0_0_30px_rgba(192,243,102,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2">
                   Sou da área da Beleza
                   <Sparkles className="w-5 h-5" />
-                </button>
+                </Link>
               </div>
               <div className="flex items-center gap-4 sm:gap-8">
                 <div className="flex items-center gap-2 sm:gap-3">
@@ -198,25 +145,25 @@ export default function Page() {
             </FadeIn>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
               {[
-                { icon: Brain, label: 'Psicólogo(a)' },
-                { icon: Smile, label: 'Dentista' },
-                { icon: Apple, label: 'Nutricionista' },
-                { icon: Activity, label: 'Fisioterapeuta' },
-                { icon: Ear, label: 'Fonoaudiólogo(a)' },
-                { icon: Paintbrush, label: 'Nail Designer' },
-                { icon: Eye, label: 'Lash Designer' },
-                { icon: Wand2, label: 'Sobrancelhas' },
-                { icon: Scissors, label: 'Cabeleireiro(a)' },
-                { icon: Palette, label: 'Maquiador(a)' },
+                { icon: Brain, label: 'Psicólogo(a)', href: '/saude/psicologo' },
+                { icon: Smile, label: 'Dentista', href: '/saude/dentista' },
+                { icon: Apple, label: 'Nutricionista', href: '/saude/nutricionista' },
+                { icon: Activity, label: 'Fisioterapeuta', href: '/saude/fisioterapeuta' },
+                { icon: Ear, label: 'Fonoaudiólogo(a)', href: '/saude/fonoaudiologo' },
+                { icon: Paintbrush, label: 'Nail Designer', href: '/beleza/nail-designer' },
+                { icon: Eye, label: 'Lash Designer', href: '/beleza/lash-designer' },
+                { icon: Wand2, label: 'Sobrancelhas', href: '/beleza/sobrancelhas' },
+                { icon: Scissors, label: 'Cabeleireiro(a)', href: '/beleza/cabeleireiro' },
+                { icon: Palette, label: 'Maquiador(a)', href: '/beleza/maquiador' },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 0.05}>
-                  <button className="w-full h-full group flex flex-col items-start p-4 sm:p-6 md:p-8 bg-surface-container-lowest rounded-card border border-outline-variant/30 hover:border-secondary transition-all hover:shadow-[0_20px_40px_rgba(17,26,51,0.05)] text-left relative overflow-hidden">
+                  <Link href={item.href} className="w-full h-full group flex flex-col items-start p-4 sm:p-6 md:p-8 bg-surface-container-lowest rounded-card border border-outline-variant/30 hover:border-secondary transition-all hover:shadow-[0_20px_40px_rgba(17,26,51,0.05)] text-left relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-12 sm:w-16 h-12 sm:h-16 bg-secondary-fixed/10 rounded-bl-full translate-x-8 -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
                     <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-azul-noite flex items-center justify-center text-secondary-fixed mb-3 md:mb-6 group-hover:scale-110 transition-transform">
                       <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
                     </div>
                     <span className="font-headline font-bold text-azul-noite text-sm sm:text-base md:text-lg leading-tight">{item.label}</span>
-                  </button>
+                  </Link>
                 </FadeIn>
               ))}
             </div>
@@ -314,9 +261,9 @@ export default function Page() {
               ))}
             </div>
             <FadeIn className="text-center">
-              <button className="w-full sm:w-auto bg-azul-noite text-white px-8 md:px-12 py-4 md:py-5 rounded-input font-bold text-base md:text-lg hover:shadow-2xl hover:-translate-y-1 transition-all">
+              <a href="https://wa.me/5583986650650?text=Ol%C3%A1!%20Estava%20na%20p%C3%A1gina%20de%20P%C3%A1gina%20Inicial%20e%20cliquei%20em%20%22Quero%20Implementar%20esse%20Ecossistema%22.%20Gostaria%20de%20falar%20com%20um%20especialista!" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-azul-noite text-white px-8 md:px-12 py-4 md:py-5 rounded-input font-bold text-base md:text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center text-center">
                 Quero Implementar esse Ecossistema
-              </button>
+              </a>
             </FadeIn>
           </div>
         </section>
@@ -433,9 +380,9 @@ export default function Page() {
                      ))}
                   </div>
 
-                  <button className="w-full py-4 sm:py-5 md:py-6 px-2 sm:px-4 border-2 border-azul-noite text-azul-noite rounded-input font-bold text-[15px] sm:text-lg whitespace-nowrap sm:whitespace-normal hover:bg-azul-noite hover:text-white transition-all">
+                  <a href="https://wa.me/5583986650650?text=Ol%C3%A1!%20Estava%20na%20p%C3%A1gina%20de%20P%C3%A1gina%20Inicial%20e%20cliquei%20em%20%22Quero%20implementar%20o%20m%C3%A9todo%22.%20Gostaria%20de%20falar%20com%20um%20especialista!" target="_blank" rel="noopener noreferrer" className="w-full py-4 sm:py-5 md:py-6 px-2 sm:px-4 border-2 border-azul-noite text-azul-noite rounded-input font-bold text-[15px] sm:text-lg whitespace-nowrap sm:whitespace-normal hover:bg-azul-noite hover:text-white transition-all flex items-center justify-center text-center">
                     Quero implementar o método
-                  </button>
+                  </a>
                 </div>
               </FadeIn>
               <FadeIn delay={0.2} className="h-full">
@@ -472,9 +419,9 @@ export default function Page() {
                      ))}
                   </div>
 
-                  <button className="relative z-10 w-full py-4 sm:py-5 md:py-6 px-2 sm:px-4 bg-secondary-fixed text-azul-noite rounded-input font-bold text-[15px] sm:text-lg whitespace-nowrap sm:whitespace-normal hover:brightness-110 active:scale-95 transition-all">
+                  <a href="https://wa.me/5583986650650?text=Ol%C3%A1!%20Estava%20na%20p%C3%A1gina%20de%20P%C3%A1gina%20Inicial%20e%20cliquei%20em%20%22Terceirizar%20minha%20capta%C3%A7%C3%A3o%22.%20Gostaria%20de%20falar%20com%20um%20especialista!" target="_blank" rel="noopener noreferrer" className="relative z-10 w-full py-4 sm:py-5 md:py-6 px-2 sm:px-4 bg-secondary-fixed text-azul-noite rounded-input font-bold text-[15px] sm:text-lg whitespace-nowrap sm:whitespace-normal hover:brightness-110 active:scale-95 transition-all flex items-center justify-center text-center">
                     Terceirizar minha captação
-                  </button>
+                  </a>
                 </div>
               </FadeIn>
             </div>
@@ -587,10 +534,10 @@ export default function Page() {
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <button className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-secondary-fixed text-azul-noite rounded-input font-bold text-base md:text-lg hover:shadow-[0_0_40px_rgba(192,243,102,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3">
+                <a href="https://wa.me/5583986650650?text=Ol%C3%A1!%20Estava%20na%20p%C3%A1gina%20de%20P%C3%A1gina%20Inicial%20e%20cliquei%20em%20%22Falar%20com%20um%20Especialista%22.%20Gostaria%20de%20falar%20com%20um%20especialista!" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-secondary-fixed text-azul-noite rounded-input font-bold text-base md:text-lg hover:shadow-[0_0_40px_rgba(192,243,102,0.3)] hover:scale-105 active:scale-95 transition-all gap-3 flex items-center justify-center text-center">
                   <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
                   Falar com um Especialista
-                </button>
+                </a>
               </div>
               
               {/* Sub-features / Trust */}
