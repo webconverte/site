@@ -9,6 +9,36 @@ export function Header() {
   const [saudeMobileOpen, setSaudeMobileOpen] = React.useState(false);
   const [belezaMobileOpen, setBelezaMobileOpen] = React.useState(false);
 
+  // Desktop dropdown states (for touch/click support on iPad)
+  const [saudeDesktopOpen, setSaudeDesktopOpen] = React.useState(false);
+  const [belezaDesktopOpen, setBelezaDesktopOpen] = React.useState(false);
+
+  const saudeDesktopRef = React.useRef<HTMLDivElement>(null);
+  const belezaDesktopRef = React.useRef<HTMLDivElement>(null);
+
+  // Close desktop dropdowns when clicking outside
+  React.useEffect(() => {
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
+      if (saudeDesktopRef.current && !saudeDesktopRef.current.contains(e.target as Node)) {
+        setSaudeDesktopOpen(false);
+      }
+      if (belezaDesktopRef.current && !belezaDesktopRef.current.contains(e.target as Node)) {
+        setBelezaDesktopOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
+
+  const closeDesktopDropdowns = () => {
+    setSaudeDesktopOpen(false);
+    setBelezaDesktopOpen(false);
+  };
+
   return (
     <>
       <header className="bg-[#041847] w-full top-0 sticky z-50">
@@ -17,35 +47,65 @@ export function Header() {
             <span className="text-secondary-fixed">WEB</span><span className="text-white">CONVERTE</span>
           </Link>
           <nav className="hidden md:flex gap-10 items-center">
-            {/* Saúde com Dropdown */}
-            <div className="relative group">
-              <button className="text-white/70 font-medium hover:text-secondary-fixed transition-colors flex items-center gap-1 py-2 cursor-pointer">
-                Saúde <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+            {/* Saúde com Dropdown - click + hover */}
+            <div
+              className="relative"
+              ref={saudeDesktopRef}
+              onMouseEnter={() => setSaudeDesktopOpen(true)}
+              onMouseLeave={() => setSaudeDesktopOpen(false)}
+            >
+              <button
+                className="text-white/70 font-medium hover:text-secondary-fixed transition-colors flex items-center gap-1 py-2 cursor-pointer"
+                onClick={() => {
+                  setBelezaDesktopOpen(false);
+                  setSaudeDesktopOpen((prev) => !prev);
+                }}
+              >
+                Saúde <ChevronDown className={`w-4 h-4 transition-transform ${saudeDesktopOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div className="absolute top-full left-0 mt-1 w-56 rounded-xl bg-[#041847]/95 backdrop-blur-md border border-white/10 p-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <Link href="/saude" className="block px-4 py-2 text-sm font-bold text-secondary-fixed hover:bg-white/5 rounded-lg">Ver Geral Saúde</Link>
+              <div
+                className={`absolute top-full left-0 mt-1 w-56 rounded-xl bg-[#041847]/95 backdrop-blur-md border border-white/10 p-2 shadow-2xl transition-all duration-200 z-50 ${
+                  saudeDesktopOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+                }`}
+              >
+                <Link href="/saude" className="block px-4 py-2 text-sm font-bold text-secondary-fixed hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Ver Geral Saúde</Link>
                 <div className="h-px bg-white/10 my-1"></div>
-                <Link href="/saude/psicologo" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Psicólogos</Link>
-                <Link href="/saude/dentista" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Dentistas</Link>
-                <Link href="/saude/nutricionista" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Nutricionistas</Link>
-                <Link href="/saude/fisioterapeuta" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Fisioterapeutas</Link>
-                <Link href="/saude/fonoaudiologo" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Fonoaudiólogos</Link>
+                <Link href="/saude/psicologo" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Psicólogos</Link>
+                <Link href="/saude/dentista" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Dentistas</Link>
+                <Link href="/saude/nutricionista" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Nutricionistas</Link>
+                <Link href="/saude/fisioterapeuta" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Fisioterapeutas</Link>
+                <Link href="/saude/fonoaudiologo" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Fonoaudiólogos</Link>
               </div>
             </div>
 
-            {/* Beleza com Dropdown */}
-            <div className="relative group">
-              <button className="text-white/70 font-medium hover:text-secondary-fixed transition-colors flex items-center gap-1 py-2 cursor-pointer">
-                Beleza <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+            {/* Beleza com Dropdown - click + hover */}
+            <div
+              className="relative"
+              ref={belezaDesktopRef}
+              onMouseEnter={() => setBelezaDesktopOpen(true)}
+              onMouseLeave={() => setBelezaDesktopOpen(false)}
+            >
+              <button
+                className="text-white/70 font-medium hover:text-secondary-fixed transition-colors flex items-center gap-1 py-2 cursor-pointer"
+                onClick={() => {
+                  setSaudeDesktopOpen(false);
+                  setBelezaDesktopOpen((prev) => !prev);
+                }}
+              >
+                Beleza <ChevronDown className={`w-4 h-4 transition-transform ${belezaDesktopOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div className="absolute top-full left-0 mt-1 w-56 rounded-xl bg-[#041847]/95 backdrop-blur-md border border-white/10 p-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <Link href="/beleza" className="block px-4 py-2 text-sm font-bold text-secondary-fixed hover:bg-white/5 rounded-lg">Ver Geral Beleza</Link>
+              <div
+                className={`absolute top-full left-0 mt-1 w-56 rounded-xl bg-[#041847]/95 backdrop-blur-md border border-white/10 p-2 shadow-2xl transition-all duration-200 z-50 ${
+                  belezaDesktopOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+                }`}
+              >
+                <Link href="/beleza" className="block px-4 py-2 text-sm font-bold text-secondary-fixed hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Ver Geral Beleza</Link>
                 <div className="h-px bg-white/10 my-1"></div>
-                <Link href="/beleza/cabeleireiro" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Cabeleireiros</Link>
-                <Link href="/beleza/lash-designer" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Lash Designers</Link>
-                <Link href="/beleza/sobrancelhas" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Sobrancelhas</Link>
-                <Link href="/beleza/nail-designer" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Nail Designers</Link>
-                <Link href="/beleza/maquiador" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg">Maquiadores</Link>
+                <Link href="/beleza/cabeleireiro" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Cabeleireiros</Link>
+                <Link href="/beleza/lash-designer" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Lash Designers</Link>
+                <Link href="/beleza/sobrancelhas" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Sobrancelhas</Link>
+                <Link href="/beleza/nail-designer" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Nail Designers</Link>
+                <Link href="/beleza/maquiador" className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg" onClick={closeDesktopDropdowns}>Maquiadores</Link>
               </div>
             </div>
 
@@ -127,3 +187,4 @@ export function Header() {
     </>
   );
 }
+
